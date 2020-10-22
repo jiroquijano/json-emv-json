@@ -42,7 +42,7 @@ const getKeyFromID = (id, keyShift=0) =>{
         '01':['pim','acqid'],
         '03':['merid'],
         '05':['pnflags','refLabel'],
-        '07':['termLabel'],
+        '07':['','termLabel'],
         '28':['mait'],
         '52':['mcc'],
         '53':['txCurrency'],
