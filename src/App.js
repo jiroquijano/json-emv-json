@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
+import './components/InputObjectForm'
+import InputObjectForm from './components/InputObjectForm';
 
 function App() {
   return (
     <div className="App">
-      I'm still empty ehe~ (^3-)
+      <InputObjectForm/>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const {keyToIDMap} = require('./key-and-id-mapping');
+const {keyToIDMap,getKeyFromID} = require('./key-and-id-mapping');
 const {crc16ccitt} = require('crc');
 
 //Pads length string value when length is one digit
@@ -32,7 +32,4 @@ const convertObjectToEMVCode = (input) =>{
     return emvString+crcString;
 }
 
-module.exports = {transformToEMVFormat, convertObjectToEMVCode,calculateAndFormatCRC};
-
-const obj = {pfi:'testing',mait:{guid:'black',acqid:'pink',merid:'in.your', pnflags:'area'}}
-console.log(convertObjectToEMVCode(obj));
+module.exports = {transformToEMVFormat, convertObjectToEMVCode, calculateAndFormatCRC};
