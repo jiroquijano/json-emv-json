@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {convertObjectToEMVCode} from '../lib/json-emv-conv';
 
-const InputObjectForm = () =>{
+const InputObjectForm = ({setresultJSON, setresultEMV}) =>{
     const [pfi,setpfi] = useState('');
     const [pim,setpim] = useState('');
     const [maitVisibility, setMaitVisibility] = useState(false);
@@ -18,6 +18,13 @@ const InputObjectForm = () =>{
     const [addVisibility, setAddVisibility] = useState(false);
     const [refLabel, setreflabel] = useState('');
     const [termLabel, settermlabel] = useState('');
+  
+    const onSubmitHandler = (e) => {
+      e.preventDefault();
+      const EMVObject = constructObject();
+      setresultJSON(JSON.stringify(EMVObject));
+      setresultEMV(convertObjectToEMVCode(EMVObject));
+    }
 
     const constructObject = () =>{
         const EMVObject = {};
@@ -42,14 +49,8 @@ const InputObjectForm = () =>{
         return EMVObject;
     }
 
-    const formSubmitHandler = (e) => {
-        e.preventDefault();
-        const EMVObject = constructObject();
-        console.log(convertObjectToEMVCode(EMVObject));
-    }
-
     return (
-        <form onSubmit={formSubmitHandler}>
+        <form onSubmit={onSubmitHandler}>
             <label>
                 Payload Format Indicator:
                 <input type='text' placeholder='' required minLength={2} maxLength={2}
@@ -164,7 +165,7 @@ const InputObjectForm = () =>{
                     ) : <br/>
                 }
             </label>
-            <button>Generate</button>
+            <button>Generate JSON</button>
         </form>
     )
 }
