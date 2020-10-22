@@ -40,8 +40,8 @@ const getKeyFromID = (id, keyShift=0) =>{
     const idToKeyMap = {
         '00':['pfi','guid'],
         '01':['pim','acqid'],
-        '03':['merid'],
-        '05':['pnflags','refLabel'],
+        '03':['','merid'],
+        '05':['','pnflags|refLabel'],
         '07':['','termLabel'],
         '28':['mait'],
         '52':['mcc'],

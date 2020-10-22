@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const {keyToIDMap,getKeyFromID} = require('./key-and-id-mapping');
+const {keyToIDMap} = require('./key-and-id-mapping');
 const {crc16ccitt} = require('crc');
 
 //Pads length string value when length is one digit
