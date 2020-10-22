@@ -13,9 +13,9 @@ const EMVResult = ({resultEMV}) => {
     return (
         resultEMV && (
         <>
-            <textarea readOnly value={resultEMV}/><br/>
-            <button onClick={generateQRHandler}>Generate QR</button><br/>
-            <canvas ref={qrCanvas}/>
+            <textarea className="emvresult_textarea" readOnly value={resultEMV}/><br/>
+            <button className="emvresult_button" onClick={generateQRHandler}>Generate QR</button><br/>
+            <canvas className="emvresult_canvas" ref={qrCanvas}/>
         </>
         )
     )

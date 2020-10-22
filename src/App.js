@@ -1,23 +1,18 @@
-import React, {useState,useRef} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import './components/InputObjectForm'
 import InputObjectForm from './components/InputObjectForm';
 import EMVResult from './components/EMVResult';
+import JSONResult from './components/JSONResult';
 
 function App() {
   const [resultJSON, setresultJSON] = useState('');
   const [resultEMV, setresultEMV] = useState('');
-  const qrCanvas = useRef(null);
 
   return (
     <div className="App">
       <InputObjectForm setresultEMV={setresultEMV} setresultJSON={setresultJSON}/>
-      {
-        resultJSON && 
-        <>
-          <textarea readOnly value={resultJSON}/><br/>
-        </>
-      }
+      <JSONResult resultJSON={resultJSON}/><br/>
       <EMVResult resultEMV={resultEMV}/>
     </div>
   );
