@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const {keyToIDMap} = require('./key-and-id-mapping');
+const {crc16ccitt} = require('crc');
 
 //Pads length string value when length is one digit
 const padPayloadLength = (payload) =>{
@@ -18,15 +19,20 @@ const transformToEMVFormat = (key, payload) =>{
     }
 };
 
+const calculateAndFormatCRC = (input) =>{
+    const crc = crc16ccitt(`${input}6304`).toString(16).toUpperCase(); //[KEY][LENGTH] of CRC part of CRC payload
+    const paddedCrc = _.padStart(crc,4,'0');
+    return transformToEMVFormat('crc',paddedCrc);
+}
+
 const convertObjectToEMVCode = (input) =>{
     const mappedObject = _.mapKeys(input,(val,key)=>transformToEMVFormat(key,val));
     const emvString = Object.keys(mappedObject).join('');
-    console.log(emvString);
-    //todo: add CRC
-    return emvString;
+    const crcString= calculateAndFormatCRC(emvString);
+    return emvString+crcString;
 }
 
-module.exports = {transformToEMVFormat, convertObjectToEMVCode};
+module.exports = {transformToEMVFormat, convertObjectToEMVCode,calculateAndFormatCRC};
 
-var obj = {pfi:'bla',mait:{guid:'1234567890',acqid:'01',merid:'c',pnflags:'d'},acqid:'last'}
-convertObjectToEMVCode(obj);
+const obj = {pfi:'testing',mait:{guid:'black',acqid:'pink',merid:'in.your', pnflags:'area'}}
+console.log(convertObjectToEMVCode(obj));

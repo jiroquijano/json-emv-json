@@ -1,5 +1,7 @@
-const {transformToEMVFormat, convertObjectToEMVCode} = require('./json-emv-conv');
+const {transformToEMVFormat, convertObjectToEMVCode, calculateAndFormatCRC} = require('./json-emv-conv');
 const {keyToIDMap} = require('./key-and-id-mapping');
+const {crc16ccitt} = require('crc');
+const _ = require('lodash');
 
 const padPayloadLength = (payload) =>{
     return payload.length < 10 ? `0${payload.length}` : payload.length;
@@ -18,8 +20,14 @@ test('should be able to process simple key-value pair strings to EMV format', ()
     });
 });
 
+test('should calculate crc using CRC16 CCITT and format to EMV string',()=>{
+    const samplePayload = '00020101021128500011ph.ppmi.p2m0111PAPHPHM1XXX030910040313105033105204601653036085802PH5910MYFOODHALL6011MANDALUYONG624105253CF64D20941AAEFCE8C263A7A070800000000';
+    const calculated = calculateAndFormatCRC(samplePayload);
+    const expectedCRC = _.padStart(crc16ccitt(`${samplePayload}6304`).toString(16).toUpperCase(),4,'0');
+    expect(calculated).toEqual(`6304${expectedCRC}`)
+});
+
 test('should be able to translate nested object payload to EMV formatted string',()=>{
-    //note: crc to be included in emv code format result
     const nestedObject = {
         mait:{                  //28 32
             guid: '1234',           //00 04 1234
@@ -29,7 +37,9 @@ test('should be able to translate nested object payload to EMV formatted string'
         }
     };
     const generatedEMVCode = convertObjectToEMVCode(nestedObject);
-    expect(generatedEMVCode).toEqual('2832000412340105567890304abcd0503310');
+    const expectedStringWithoutCrc = '2832000412340105567890304abcd0503310';
+    const crc = _.padStart(crc16ccitt(`${expectedStringWithoutCrc}6304`).toString(16).toUpperCase(),4,'0');
+    expect(generatedEMVCode).toEqual(`${expectedStringWithoutCrc}6304${crc}`);
 });
 
 test('should be able to translate complex object (simple + nested) input to EMV formatted string', ()=>{
@@ -43,5 +53,7 @@ test('should be able to translate complex object (simple + nested) input to EMV 
         }
     }
     const generatedEMVCode = convertObjectToEMVCode(complexObject);
-    expect(generatedEMVCode).toEqual('0003hey28360005black0104pink0307in.your0504area');
+    const expectedStringWithoutCrc = '0003hey28360005black0104pink0307in.your0504area';
+    const crc = _.padStart(crc16ccitt(`${expectedStringWithoutCrc}6304`).toString(16).toUpperCase(),4,'0');
+    expect(generatedEMVCode).toEqual(`${expectedStringWithoutCrc}6304${crc}`);
 });
