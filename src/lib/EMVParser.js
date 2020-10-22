@@ -55,18 +55,13 @@ class EMVParser{
         const newEntry = {};
         if(!_.isEmpty(this.nestedObject)){
             newEntry[this.currentKey] = {...this.nestedObject};
-            this.objectEquivalent = {
-                ...this.objectEquivalent,
-                ...newEntry
-            }
             this.nestedObject = {};
         }else{
             newEntry[this.currentKey] = this.currentPayload;
-            
-            this.objectEquivalent = {
-                ...this.objectEquivalent,
-                ...newEntry
-            }
+        }
+        this.objectEquivalent = {
+            ...this.objectEquivalent,
+            ...newEntry
         }
     }
 
