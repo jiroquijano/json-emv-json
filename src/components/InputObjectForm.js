@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {Collapse, Button} from 'react-bootstrap';
 
-const InputObjectForm = ({setFormResult}) =>{
+const InputObjectForm = ({setFormInput}) =>{
     const [pfi,setpfi] = useState('');
     const [pim,setpim] = useState('');
     const [maitVisibility, setMaitVisibility] = useState(false);
@@ -36,7 +36,7 @@ const InputObjectForm = ({setFormResult}) =>{
     const onSubmitHandler = (e) => {
       e.preventDefault();
       const EMVObject = constructObject();
-      setFormResult(EMVObject);
+      setFormInput(EMVObject);
     }
 
     const constructObject = () =>{

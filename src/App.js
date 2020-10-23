@@ -1,21 +1,33 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-import HomePage from './components/HomePage';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import JSONtoEMVPage from './components/JSONtoEMVPage';
 import EMVtoJSONPage from './components/EMVtoJSONPage';
+import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Container, Row, Col} from 'react-bootstrap';
 
 function App() {
 
   return (
-    <div className="App">
-      <Router>
-        <Route path='/' exact component={HomePage}/>
-        <Route path='/json-emv' exact component={JSONtoEMVPage}/>
-        <Route path='/emv-json' exact component={EMVtoJSONPage}/>
-      </Router>
-    </div>
+    <Router>
+      <Header/>
+      <div className="App">
+        <div className="main-content">
+            <Container>
+              <Row>
+                <Col>
+                  <Switch>
+                    <Route path='/' exact component={JSONtoEMVPage}/>
+                    <Route path='/emv-json' exact component={EMVtoJSONPage}/>
+                    <Route path='/json-emv' exact component={JSONtoEMVPage}/>
+                  </Switch>
+                </Col>
+              </Row>
+            </Container>
+        </div>
+      </div>
+    </Router>
   );
 }
 

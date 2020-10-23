@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
+@import "styles/Header-styles.css";
 
-body{
-  background-color: #a4abae;
+.App{
   font-family: 'Montserrat';
+  height: 100vh;
+  width: 100%;
+  background-color: #f1f1f1;
+  padding-top:10vh;
 }
 
-.homepage-link{
-  text-decoration: none;
-  color:white;
+.main-content{
+  background-color: white;
+  width: 95%;
+  margin: auto;
+  height: 100vh;
+  padding: 10px;
+  box-shadow: rgb(231, 230, 230) 5px 5px;
 }
+
 
 
