@@ -26,6 +26,7 @@ const calculateAndFormatCRC = (input) =>{
 }
 
 const convertObjectToEMVCode = (input) =>{
+    if(_.isEmpty(input)) return '';
     const mappedObject = _.mapKeys(input,(val,key)=>transformToEMVFormat(key,val));
     const emvString = Object.keys(mappedObject).join('');
     const crcString= calculateAndFormatCRC(emvString);

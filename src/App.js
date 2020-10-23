@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import HomePage from './components/HomePage';
 import JSONtoEMVPage from './components/JSONtoEMVPage';
 import EMVtoJSONPage from './components/EMVtoJSONPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 

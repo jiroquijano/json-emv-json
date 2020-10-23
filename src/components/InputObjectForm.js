@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import {Collapse, Button} from 'react-bootstrap';
 
 const InputObjectForm = ({setFormResult}) =>{
     const [pfi,setpfi] = useState('');
@@ -17,7 +18,21 @@ const InputObjectForm = ({setFormResult}) =>{
     const [addVisibility, setAddVisibility] = useState(false);
     const [refLabel, setreflabel] = useState('');
     const [termLabel, settermlabel] = useState('');
-  
+
+    const handleMerchantInfoClick = () => {
+        setguid('');
+        setacqid('');
+        setmerid('');
+        setpnf('');
+        setMaitVisibility(!maitVisibility);
+    }
+
+    const handleAdditionalDataCollapse = () =>{
+        setreflabel('');
+        settermlabel('');
+        setAddVisibility(!addVisibility);
+    }
+
     const onSubmitHandler = (e) => {
       e.preventDefault();
       const EMVObject = constructObject();
@@ -67,38 +82,48 @@ const InputObjectForm = ({setFormResult}) =>{
             <br/>
             <label>
                 P2M Merchant Account Information Template
-                <input type="checkbox" onChange={(e)=>setMaitVisibility(!maitVisibility)}/>
-                {
-                    maitVisibility ? (
-                        <div>
-                            <label>
+                <Button
+                    onClick={handleMerchantInfoClick}
+                    aria-controls="mait-collapsible"
+                    aria-expanded={maitVisibility}
+                >
+                    {maitVisibility ? 'x' : 'expand'}
+                </Button>
+                <Collapse in={maitVisibility}>
+                    <div id="mait-collapsible">
+                        {
+                        maitVisibility && (
+                            <>
+                                <label>
                                 Globally Unique Identifier:
                                 <input type='text' required minLength={12} maxLength={12}
                                 value={guid} onChange={(e)=>setguid(e.target.value)}
                                 />
-                            </label>
-                            <label>
-                                Acquirer ID:
-                                <input type='text' required minLength={11} maxLength={11}
-                                value={acqid} onChange={(e)=>setacqid(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                Merchant ID:
-                                <input type='text' maxLength={25}
-                                value={merid} onChange={(e)=>setmerid(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                Proxy-Notify flags:
-                                <input type='text' required minLength={3} maxLength={3}
-                                value={pnf} onChange={(e)=>setpnf(e.target.value)}
-                                />
-                            </label>
-                        </div>
-                    ) : <br/>
-                }
+                                </label>
+                                <label>
+                                    Acquirer ID:
+                                    <input type='text' required minLength={11} maxLength={11}
+                                    value={acqid} onChange={(e)=>setacqid(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    Merchant ID:
+                                    <input type='text' maxLength={25}
+                                    value={merid} onChange={(e)=>setmerid(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    Proxy-Notify flags:
+                                    <input type='text' required minLength={3} maxLength={3}
+                                    value={pnf} onChange={(e)=>setpnf(e.target.value)}
+                                    />
+                                </label>
+                            </>
+                        )}
+                    </div>
+                </Collapse>
             </label>
+            <br/>
             <label>
                 Merchant Category Code:
                 <input type='text' required minLength={4} maxLength={4}
@@ -142,28 +167,38 @@ const InputObjectForm = ({setFormResult}) =>{
             </label>
             <br/>
             <label>
-                Additional Data Field Template:
-                <input type="checkbox" onChange={(e)=>setAddVisibility(!addVisibility)}/>
-                {
-                    addVisibility ? (
-                        <div>
-                            <label>
-                                Reference Label:
-                                <input type='text' required maxLength={25}
-                                value={refLabel} onChange={(e)=>setreflabel(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                Terminal Label:
-                                <input type='text' maxLength={8}
-                                value={termLabel} onChange={(e)=>settermlabel(e.target.value)}
-                                />
-                            </label>
-                        </div>
-                    ) : <br/>
-                }
+                Additional Data Field Template
+                <Button
+                    onClick={handleAdditionalDataCollapse}
+                    aria-controls="additional-collapsible"
+                    aria-expanded={addVisibility}
+                >
+                    {addVisibility ? 'x' : 'expand'}
+                </Button>
+                <Collapse in={addVisibility}>
+                    <div id="additional-collapsible">
+                        {
+                        addVisibility && (
+                            <>
+                                <label>
+                                    Reference Label:
+                                    <input type='text' required maxLength={25}
+                                    value={refLabel} onChange={(e)=>setreflabel(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    Terminal Label:
+                                    <input type='text' maxLength={8}
+                                    value={termLabel} onChange={(e)=>settermlabel(e.target.value)}
+                                    />
+                                </label>
+                            </>
+                        )}
+                    </div>            
+                </Collapse>
             </label>
-            <button>Generate JSON</button>
+            <br/>
+            <button>Submit</button>
         </form>
     )
 }
