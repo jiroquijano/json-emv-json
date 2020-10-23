@@ -31,3 +31,45 @@ test('parser should be able to handle complex nested EMV string',()=>{
         }
     })
 });
+
+test('parser should be able to handle multiple complex nested EMV string', ()=>{
+    const multipleComplexEMV = '28390007complex0106nested0306string0504test62180506please0704work';
+    const parserUnderTest = new EMVParser(multipleComplexEMV);
+    expect(parserUnderTest.getObjectEquivalent()).toEqual({
+        mait:{
+            guid:'complex',
+            acqid:'nested',
+            merid:'string',
+            pnflags:'test'
+        },
+        additional:{
+            refLabel:'please',
+            termLabel:'work'
+        }
+    })
+})
+
+test('parser should be able to process a combination of simple and complex EMV string',()=>{
+    const combinedEMV = '00020101021128500011ph.ppmi.p2m0111PAPHPHM1XXX030910040313105033105204601653036085802PH5910MYFOODHALL6011MANDALUYONG624105253CF64D20941AAEFCE8C263A7A070800000000630485A6';
+    const parserUnderTest = new EMVParser(combinedEMV);
+    expect(parserUnderTest.getObjectEquivalent()).toEqual({
+        pfi: '01',
+        pim: '11',
+        mait:{
+            guid: 'ph.ppmi.p2m',
+            acqid: 'PAPHPHM1XXX',
+            merid: '100403131',
+            pnflags: '310' 
+        },
+        mcc: '6016',
+        txCurrency: '608',
+        cc: 'PH',
+        merCity: 'MANDALUYONG',
+        merName: 'MYFOODHALL',
+        additional:{
+            refLabel: '3CF64D20941AAEFCE8C263A7A',
+            termLabel: '00000000'
+        },
+        crc: '85A6'
+    });
+})
