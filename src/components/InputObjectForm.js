@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
-import {convertObjectToEMVCode} from '../lib/json-emv-conv';
 
-const InputObjectForm = ({setresultJSON, setresultEMV}) =>{
+const InputObjectForm = ({setFormResult}) =>{
     const [pfi,setpfi] = useState('');
     const [pim,setpim] = useState('');
     const [maitVisibility, setMaitVisibility] = useState(false);
@@ -22,8 +21,7 @@ const InputObjectForm = ({setresultJSON, setresultEMV}) =>{
     const onSubmitHandler = (e) => {
       e.preventDefault();
       const EMVObject = constructObject();
-      setresultJSON(JSON.stringify(EMVObject));
-      setresultEMV(convertObjectToEMVCode(EMVObject));
+      setFormResult(EMVObject);
     }
 
     const constructObject = () =>{

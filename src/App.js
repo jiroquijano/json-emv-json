@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import './components/InputObjectForm'
-import InputObjectForm from './components/InputObjectForm';
-import EMVResult from './components/EMVResult';
-import JSONResult from './components/JSONResult';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import HomePage from './components/HomePage';
+import JSONtoEMVPage from './components/JSONtoEMVPage';
+import EMVtoJSONPage from './components/EMVtoJSONPage';
 
 function App() {
-  const [resultJSON, setresultJSON] = useState('');
-  const [resultEMV, setresultEMV] = useState('');
 
   return (
     <div className="App">
-      <InputObjectForm setresultEMV={setresultEMV} setresultJSON={setresultJSON}/>
-      <JSONResult resultJSON={resultJSON}/><br/>
-      <EMVResult resultEMV={resultEMV}/>
+      <Router>
+        <Route path='/' exact component={HomePage}/>
+        <Route path='/json-emv' exact component={JSONtoEMVPage}/>
+        <Route path='/emv-json' exact component={EMVtoJSONPage}/>
+      </Router>
     </div>
   );
 }
