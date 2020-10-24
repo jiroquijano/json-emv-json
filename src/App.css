@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
 @import "styles/Header-styles.css";
 @import "styles/InputObjectForm.css";
+@import "styles/Result.css";
+@import "styles/JSONInput.css";
 
 .App{
   font-family: 'Montserrat';
@@ -18,10 +20,5 @@
   padding: 10px;
   padding-right: 0;
   box-shadow: rgb(231, 230, 230) 5px 5px;
-}
-
-.result{
-  background-color: black;
-  height: 80vh;
 }
 

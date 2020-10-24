@@ -7,9 +7,9 @@ const Header = () => {
         <div className="header__nav-banner">
             <Container>
                 <Row>
-                    <Col md="9" lg="9">
+                    <Col sm={6} md={7} lg={9}>
                     </Col>
-                    <Col md="3" lg="3">
+                    <Col sm={6} md={5} lg={3}>
                         <NavLink className="header__navlink" 
                             activeClassName="header__navlink--selected"
                             to="/json-emv">

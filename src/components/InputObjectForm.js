@@ -1,8 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import {Collapse, Button} from 'react-bootstrap';
 import {Container, Row, Col} from 'react-bootstrap';
+import InputContext from '../context/Input-context';
 
-const InputObjectForm = ({setFormInput}) =>{
+const InputObjectForm = () =>{
+    const {inputDispatch} = useContext(InputContext);
+
     const [pfi,setpfi] = useState('');
     const [pim,setpim] = useState('');
     const [maitVisibility, setMaitVisibility] = useState(false);
@@ -37,7 +40,7 @@ const InputObjectForm = ({setFormInput}) =>{
     const onSubmitHandler = (e) => {
       e.preventDefault();
       const EMVObject = constructObject();
-      setFormInput(EMVObject);
+      inputDispatch({type:'UPDATE_JSON_INPUT',json: JSON.stringify(EMVObject)})
     }
 
     const constructObject = () =>{
@@ -259,9 +262,7 @@ const InputObjectForm = ({setFormInput}) =>{
                 </Row>
                 <hr/>
                 <Row>
-                    <Col>
-                    </Col>
-                    <Col>
+                    <Col >
                         <button className="submit-button">submit</button>
                     </Col>
                 </Row>

@@ -1,21 +1,34 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useContext} from 'react';
+import InputContext from '../context/Input-context';
+import {Container, Col, Row} from 'react-bootstrap'
 
-const JSONInput = ({setJSONInput}) => {
+const JSONInput = () => {
     const [text, setText] = useState('');
+    const {inputDispatch} = useContext(InputContext);
+
     const parseButtonHandler = () =>{
         try{
-            const object = JSON.parse(text.replace(/(\r\n|\n|\r)/gm,""));
-            setJSONInput(object);
+            const inputJSON = text.replace(/(\r\n|\n|\r)/gm,"");
+            JSON.parse(inputJSON);
+            inputDispatch({type:'UPDATE_JSON_INPUT', json:inputJSON});
         }catch(e){
-            alert(`${e.message}\nsample valid JSON input:\n{"jiro":"pogi"}`);
+            alert(`Invalid JSON input\nsample valid JSON:\n    {\n    "validjson":"lykdis"\n    }`);
         }
     }
 
     return (
-        <>
-            <textarea value={text} onChange={(e)=>setText(e.target.value)}/><br/>
-            <button onClick={parseButtonHandler}>parse</button>
-        </>
+        <Container>
+            <Row>
+                <Col>
+                    <textarea className="json-input__textarea" value={text} onChange={(e)=>setText(e.target.value)}/><br/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <button className="submit-button" onClick={parseButtonHandler}>submit</button>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
