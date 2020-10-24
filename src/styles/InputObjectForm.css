@@ -1,0 +1,31 @@
+.input-form__label{
+    font-size: .8rem;
+}
+
+.input-form__label--expand{
+    font-size: .8rem;
+    display:inline-block;
+    padding-right: 10px;
+}
+
+form input, form select{
+    width: 24rem;
+    height: 2rem;
+}
+
+.form-input__expanded{
+    text-align: center;
+    background-color: #f1f1f1;
+    box-shadow: gray;
+    padding: 10px;
+    width: 100%;
+}
+
+.submit-button{
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    width: 10rem;
+    box-shadow: none;
+}

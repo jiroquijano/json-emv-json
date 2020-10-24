@@ -1,22 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
 @import "styles/Header-styles.css";
+@import "styles/InputObjectForm.css";
 
 .App{
   font-family: 'Montserrat';
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: #f1f1f1;
-  padding-top:10vh;
+  padding-top:14vh;
 }
 
 .main-content{
   background-color: white;
   width: 95%;
   margin: auto;
-  height: 100vh;
+  height: auto;
   padding: 10px;
+  padding-right: 0;
   box-shadow: rgb(231, 230, 230) 5px 5px;
 }
 
-
+.result{
+  background-color: black;
+  height: 80vh;
+}
 

@@ -13,19 +13,24 @@ function App() {
     <Router>
       <Header/>
       <div className="App">
-        <div className="main-content">
-            <Container>
-              <Row>
-                <Col>
+        <Container>
+            <Row>
+              <Col md="6">
+                <div className="main-content">
                   <Switch>
                     <Route path='/' exact component={JSONtoEMVPage}/>
                     <Route path='/emv-json' exact component={EMVtoJSONPage}/>
                     <Route path='/json-emv' exact component={JSONtoEMVPage}/>
                   </Switch>
-                </Col>
-              </Row>
-            </Container>
-        </div>
+                </div>
+              </Col>
+              <Col md="6">
+                <div className="result">
+                  <button> hi </button>
+                </div>
+              </Col>
+            </Row>
+        </Container>
       </div>
     </Router>
   );

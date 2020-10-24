@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {Collapse, Button} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 
 const InputObjectForm = ({setFormInput}) =>{
     const [pfi,setpfi] = useState('');
@@ -63,143 +64,209 @@ const InputObjectForm = ({setFormInput}) =>{
     }
 
     return (
-        <form onSubmit={onSubmitHandler}>
-            <label>
-                Payload Format Indicator:
-                <input type='text' placeholder='' required minLength={2} maxLength={2}
-                value={pfi} onChange={(e)=>setpfi(e.target.value)}
-                />
-            </label>
-            <br/>
-            <label>
-                Point of Initiation Method:
-                <select onChange={(e)=>setpim(e.target.value)}>
-                    <option value=''>--</option>
-                    <option value='11'>11 - Static</option>
-                    <option value='12'>12 - Dynamic</option>
-                </select>
-            </label>
-            <br/>
-            <label>
-                P2M Merchant Account Information Template
-                <Button
-                    onClick={handleMerchantInfoClick}
-                    aria-controls="mait-collapsible"
-                    aria-expanded={maitVisibility}
-                >
-                    {maitVisibility ? 'x' : 'expand'}
-                </Button>
-                <Collapse in={maitVisibility}>
-                    <div id="mait-collapsible">
-                        {
-                        maitVisibility && (
-                            <>
-                                <label>
-                                Globally Unique Identifier:
-                                <input type='text' required minLength={12} maxLength={12}
-                                value={guid} onChange={(e)=>setguid(e.target.value)}
-                                />
-                                </label>
-                                <label>
-                                    Acquirer ID:
-                                    <input type='text' required minLength={11} maxLength={11}
-                                    value={acqid} onChange={(e)=>setacqid(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    Merchant ID:
-                                    <input type='text' maxLength={25}
-                                    value={merid} onChange={(e)=>setmerid(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    Proxy-Notify flags:
-                                    <input type='text' required minLength={3} maxLength={3}
-                                    value={pnf} onChange={(e)=>setpnf(e.target.value)}
-                                    />
-                                </label>
-                            </>
-                        )}
-                    </div>
-                </Collapse>
-            </label>
-            <br/>
-            <label>
-                Merchant Category Code:
-                <input type='text' required minLength={4} maxLength={4}
-                value={mcc} onChange={(e)=>setmcc(e.target.value)}
-                />
-            </label>
-            <br/>
-            <label>
-                Transaction Currency:
-                <input type='text' required minLength={3} maxLength={3}
-                value={txCurrency} onChange={(e)=>settxcurrency(e.target.value)}
-                />
-            </label>
-            <br/>
-            <label>
-                Transaction Amount:
-                <input type='text' maxLength={13}
-                value={txAmt} onChange={(e)=>settxamt(e.target.value)}
-                />
-            </label>
-            <br/>
-            <label>
-                Country Code:
-                <input type='text' required minLength={2} maxLength={2}
-                value={cc} onChange={(e)=>setcc(e.target.value)}
-                />
-            </label>
-            <br/>
-            <label>
-                Merchant Name:
-                <input type='text' required maxLength={25}
-                value={merName} onChange={(e)=>setmername(e.target.value)}
-                />
-            </label>
-            <br/>
-            <label>
-                Merchant City:
-                <input type='text' required maxLength={15}
-                value={merCity} onChange={(e)=>setmercity(e.target.value)}
-                />
-            </label>
-            <br/>
-            <label>
-                Additional Data Field Template
-                <Button
-                    onClick={handleAdditionalDataCollapse}
-                    aria-controls="additional-collapsible"
-                    aria-expanded={addVisibility}
-                >
-                    {addVisibility ? 'x' : 'expand'}
-                </Button>
-                <Collapse in={addVisibility}>
-                    <div id="additional-collapsible">
-                        {
-                        addVisibility && (
-                            <>
-                                <label>
-                                    Reference Label:
-                                    <input type='text' required maxLength={25}
-                                    value={refLabel} onChange={(e)=>setreflabel(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    Terminal Label:
-                                    <input type='text' maxLength={8}
-                                    value={termLabel} onChange={(e)=>settermlabel(e.target.value)}
-                                    />
-                                </label>
-                            </>
-                        )}
-                    </div>            
-                </Collapse>
-            </label>
-            <br/>
-            <button>Submit</button>
-        </form>
+        <Container>
+            <form onSubmit={onSubmitHandler}>
+                <br/>
+                <Row>
+                    <Col>
+                    <label>
+                        <div className="input-form__label">
+                            Payload Format Indicator:
+                        </div>
+                        <input type='text' placeholder='' required minLength={2} maxLength={2}
+                        value={pfi} onChange={(e)=>setpfi(e.target.value)}
+                        />
+                    </label>
+                    </Col>
+                    <Col>
+                    <label>
+                        <div className="input-form__label">
+                            Point of Initiation Method:
+                        </div>
+                        <select onChange={(e)=>setpim(e.target.value)}>
+                            <option value=''>--</option>
+                            <option value='11'>11 - Static</option>
+                            <option value='12'>12 - Dynamic</option>
+                        </select>
+                    </label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label>
+                            <div className="input-form__label--expand">
+                                P2M Merchant Account Information Template
+                            </div>
+                            <Button size="sm"
+                                onClick={handleMerchantInfoClick}
+                                aria-controls="mait-collapsible"
+                                aria-expanded={maitVisibility}
+                            >
+                                {maitVisibility ? 'x' : 'expand'}
+                            </Button>
+                            <Collapse in={maitVisibility}>
+                                <div id="mait-collapsible">
+                                    {
+                                    maitVisibility && (
+                                        <div className="form-input__expanded">
+                                            <label>
+                                                <div className="input-form__label">
+                                                    Globally Unique Identifier:
+                                                </div>
+                                                <input type='text' required minLength={12} maxLength={12}
+                                                value={guid} onChange={(e)=>setguid(e.target.value)}
+                                                />
+                                            </label>
+                                            <label>
+                                                <div className="input-form__label">
+                                                    Acquirer ID:
+                                                </div>
+                                                <input type='text' required minLength={11} maxLength={11}
+                                                value={acqid} onChange={(e)=>setacqid(e.target.value)}
+                                                />
+                                            </label>
+                                            <label>
+                                                <div className="input-form__label">
+                                                    Merchant ID:
+                                                </div>
+                                                <input type='text' maxLength={25}
+                                                value={merid} onChange={(e)=>setmerid(e.target.value)}
+                                                />
+                                            </label>
+                                            <label>
+                                                <div className="input-form__label">
+                                                    Proxy-Notify flags:
+                                                </div>
+                                                <input type='text' required minLength={3} maxLength={3}
+                                                value={pnf} onChange={(e)=>setpnf(e.target.value)}
+                                                />
+                                            </label>
+                                        </div>
+                                    )}
+                                </div>
+                            </Collapse>
+                        </label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label>
+                            <div className="input-form__label">
+                                Merchant Category Code:
+                            </div>
+                            <input type='text' required minLength={4} maxLength={4}
+                            value={mcc} onChange={(e)=>setmcc(e.target.value)}
+                            />
+                        </label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label>
+                            <div className="input-form__label">
+                                Transaction Currency:
+                            </div>
+                            <input type='text' required minLength={3} maxLength={3}
+                            value={txCurrency} onChange={(e)=>settxcurrency(e.target.value)}
+                            />
+                        </label>
+                    </Col>
+                    <Col>
+                        <label>
+                            <div className="input-form__label">
+                                Transaction Amount:
+                            </div>
+                            <input type='text' maxLength={13}
+                            value={txAmt} onChange={(e)=>settxamt(e.target.value)}
+                            />
+                        </label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label>
+                            <div className="input-form__label">
+                                Country Code:
+                            </div>
+                            <input type='text' required minLength={2} maxLength={2}
+                            value={cc} onChange={(e)=>setcc(e.target.value)}
+                            />
+                        </label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label>
+                            <div className="input-form__label">
+                                Merchant Name:
+                            </div>
+                            <input type='text' required maxLength={25}
+                            value={merName} onChange={(e)=>setmername(e.target.value)}
+                            />
+                        </label>
+                    </Col>
+                    <Col>
+                        <label>
+                            <div className="input-form__label">
+                                Merchant City:
+                            </div>
+                            <input type='text' required maxLength={15}
+                            value={merCity} onChange={(e)=>setmercity(e.target.value)}
+                            />
+                        </label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label>
+                            <div className="input-form__label--expand">
+                                Additional Data Field Template
+                            </div>
+                            <Button size="sm"
+                                onClick={handleAdditionalDataCollapse}
+                                aria-controls="additional-collapsible"
+                                aria-expanded={addVisibility}
+                            >
+                                {addVisibility ? 'x' : 'expand'}
+                            </Button>
+                            <Collapse in={addVisibility}>
+                                <div id="additional-collapsible">
+                                    {
+                                    addVisibility && (
+                                        <div className="form-input__expanded">
+                                            <label>
+                                                <div className="input-form__label">
+                                                    Reference Label:
+                                                </div>
+                                                <input type='text' required maxLength={25}
+                                                value={refLabel} onChange={(e)=>setreflabel(e.target.value)}
+                                                />
+                                            </label>
+                                            <label>
+                                                <div className="input-form__label">
+                                                    Terminal Label:
+                                                </div>
+                                                <input type='text' maxLength={8}
+                                                value={termLabel} onChange={(e)=>settermlabel(e.target.value)}
+                                                />
+                                            </label>
+                                        </div>
+                                    )}
+                                </div>            
+                            </Collapse>
+                        </label>
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col>
+                    </Col>
+                    <Col>
+                        <button className="submit-button">submit</button>
+                    </Col>
+                </Row>
+            </form>
+        </Container>
     )
 }
 
