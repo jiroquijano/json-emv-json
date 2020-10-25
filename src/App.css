@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
 @import "styles/Header-styles.css";
-@import "styles/InputObjectForm.css";
 @import "styles/Result.css";
+@import "styles/FormInput.css";
 @import "styles/JSONInput.css";
+@import "styles/EMVInput.css";
 
 .App{
   font-family: 'Montserrat';

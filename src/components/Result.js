@@ -2,6 +2,7 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import {Container, Col, Row} from 'react-bootstrap';
 import InputContext from '../context/Input-context'
 import {convertObjectToEMVCode} from '../lib/json-emv-conv';
+import {EMVParser} from '../lib/EMVParser';
 import QrCode from 'qrcode';
 
 const Result = () => {
@@ -12,7 +13,14 @@ const Result = () => {
 
     useEffect(()=>{
         if(input.emv){
-
+            if(select === 'emv'){
+                setOutput(input.emv);
+            }else if(select === 'json'){
+                const parser = new EMVParser(input.emv);
+                setOutput(JSON.stringify(parser.getObjectEquivalent()));
+            }else if(select === 'qr'){
+                QrCode.toCanvas(qrCanvas.current, input.emv, (error)=>console.log(error))
+            }
         }
     },[input.emv,select]);
 

@@ -3,7 +3,7 @@ import {Collapse, Button} from 'react-bootstrap';
 import {Container, Row, Col} from 'react-bootstrap';
 import InputContext from '../context/Input-context';
 
-const InputObjectForm = () =>{
+const FormInput = () =>{
     const {inputDispatch} = useContext(InputContext);
 
     const [pfi,setpfi] = useState('');
@@ -271,4 +271,4 @@ const InputObjectForm = () =>{
     )
 }
 
-export default InputObjectForm;
+export default FormInput;

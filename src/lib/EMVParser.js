@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 
 /* ===============================================EMV Parser===============================================
-    A Class whose purpose in life is to parse EMV strings to JS objects and gives you warm hugs
+    A Class which parses EMV strings to JS objects and gives you warm hugs
 
     Usage:
     1. instantiate class ---- e.g. const parser = new EMVParser(EMVString,keyshift,rootkey)

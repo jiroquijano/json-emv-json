@@ -6,7 +6,7 @@ const JSONInput = () => {
     const [text, setText] = useState('');
     const {inputDispatch} = useContext(InputContext);
 
-    const parseButtonHandler = () =>{
+    const submitButtonHandler = () =>{
         try{
             const inputJSON = text.replace(/(\r\n|\n|\r)/gm,"");
             JSON.parse(inputJSON);
@@ -25,7 +25,7 @@ const JSONInput = () => {
             </Row>
             <Row>
                 <Col>
-                    <button className="submit-button" onClick={parseButtonHandler}>submit</button>
+                    <button className="submit-button" onClick={submitButtonHandler}>submit</button>
                 </Col>
             </Row>
         </Container>

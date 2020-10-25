@@ -1,5 +1,4 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import {Container, Col, Row} from 'react-bootstrap';
 
 const Header = () => {
@@ -10,16 +9,7 @@ const Header = () => {
                     <Col sm={6} md={7} lg={9}>
                     </Col>
                     <Col sm={6} md={5} lg={3}>
-                        <NavLink className="header__navlink" 
-                            activeClassName="header__navlink--selected"
-                            to="/json-emv">
-                            JSON-EMV
-                        </NavLink>
-                        <NavLink className="header__navlink"
-                            activeClassName="header__navlink--selected"
-                            to="/emv-json">
-                            EMV-JSON
-                        </NavLink>
+                        JSON-EMV-JSON
                     </Col>
                 </Row>
             </Container>

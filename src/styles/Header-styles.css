@@ -5,19 +5,5 @@
     width: 100vw;
     z-index: 1;
     position: fixed;
-}
-
-.header__navlink:hover{
-    color: white;
-    text-decoration: none;
-}
-
-.header__navlink{
-    color: white;
-    margin-left: 20px;
-}
-
-.header__navlink--selected{
-    font-weight: bold;
-    border-bottom: solid white 5px;
+    color: white
 }
