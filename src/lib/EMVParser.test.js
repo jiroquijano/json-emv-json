@@ -73,3 +73,9 @@ test('parser should be able to process a combination of simple and complex EMV s
         crc: '85A6'
     });
 })
+
+test('parser should reject invalid EMV string', ()=>{
+    const invalidEMV = '000206280603aaa';
+    const parserUnderTest = new EMVParser(invalidEMV);
+    expect(parserUnderTest.getObjectEquivalent()).toEqual({error: '000206280603[aa]a'});
+})
