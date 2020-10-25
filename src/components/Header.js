@@ -6,10 +6,10 @@ const Header = () => {
         <div className="header__nav-banner">
             <Container>
                 <Row>
-                    <Col sm={6} md={7} lg={9}>
-                    </Col>
-                    <Col sm={6} md={5} lg={3}>
-                        JSON-EMV-JSON
+                    <Col>
+                        <h2>
+                            JSON-EMV-JSON
+                        </h2>
                     </Col>
                 </Row>
             </Container>
