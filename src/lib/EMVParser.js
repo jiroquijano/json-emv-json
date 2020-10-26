@@ -3,12 +3,12 @@ const _ = require('lodash');
 
 
 /* ===============================================EMV Parser===============================================
-    A Class which parses EMV strings to JS objects and gives you warm hugs
+    A Class which parses EMV strings to JS objects
 
     Usage:
     1. instantiate class ---- e.g. const parser = new EMVParser(EMVString,keyshift,rootkey)
         constructor parameters:
-            EMVString : the string that will be parsed into an object
+            EMVString : the string which will be parsed into an object
             keyshift : defaults to 0, used for id-key mapping in case of nested EMV structure
             rootkey: empty by default. was added to address the collision of ID '05' on `mait` and `additional` keys
     2. get the constructed object ---- e.g. parser.getObjectEquivalent()
