@@ -14,9 +14,8 @@ form input, form select{
 }
 
 .form-input__expanded{
-    text-align: center;
     background-color: rgb(228, 227, 227);
-    box-shadow:  #007bff8c 3px 3px;
+    box-shadow:  #6bb2ff8c 3px 3px;
     padding: 10px;
     width: 100%;
 }
