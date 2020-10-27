@@ -50,16 +50,16 @@ test('parser should be able to handle multiple complex nested EMV string', ()=>{
 })
 
 test('parser should be able to process a combination of simple and complex EMV string',()=>{
-    const combinedEMV = '00020101021128500011ph.ppmi.p2m0111PAPHPHM1XXX030910040313105033105204601653036085802PH5910MYFOODHALL6011MANDALUYONG624105253CF64D20941AAEFCE8C263A7A070800000000630485A6';
+    const combinedEMV = '00020101021128500011pa.hil.pi020111PBTMNPHIXXX030989230765305031235204601653036085802PH5910MYFOODHALL6011MANDALUYONG624105253CF64D20941AAEFCE8C263A7A070800000000630485A6';
     const parserUnderTest = new EMVParser(combinedEMV);
     expect(parserUnderTest.getObjectEquivalent()).toEqual({
         pfi: '01',
         pim: '11',
         mait:{
-            guid: 'ph.ppmi.p2m',
-            acqid: 'PAPHPHM1XXX',
-            merid: '100403131',
-            pnflags: '310' 
+            guid: 'pa.hil.pi02',
+            acqid: 'PBTMNPHIXXX',
+            merid: '892307653',
+            pnflags: '123' 
         },
         mcc: '6016',
         txCurrency: '608',

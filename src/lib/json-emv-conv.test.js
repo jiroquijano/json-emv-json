@@ -21,7 +21,7 @@ test('should be able to process simple key-value pair strings to EMV format', ()
 });
 
 test('should calculate crc using CRC16 CCITT and format to EMV string',()=>{
-    const samplePayload = '00020101021128500011ph.ppmi.p2m0111PAPHPHM1XXX030910040313105033105204601653036085802PH5910MYFOODHALL6011MANDALUYONG624105253CF64D20941AAEFCE8C263A7A070800000000';
+    const samplePayload = '00020101021128500011pa.hil.pi020111PBTMNPHIXXX030989230765305031235204601653036085802PH5910MYFOODHALL6011MANDALUYONG624105253CF64D20941AAEFCE8C263A7A070800000000';
     const calculated = calculateAndFormatCRC(samplePayload);
     const expectedCRC = _.padStart(crc16ccitt(`${samplePayload}6304`).toString(16).toUpperCase(),4,'0');
     expect(calculated).toEqual(`6304${expectedCRC}`)
