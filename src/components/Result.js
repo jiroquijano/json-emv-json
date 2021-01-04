@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import {Container, Col, Row} from 'react-bootstrap';
 import InputContext from '../context/Input-context'
 import {convertObjectToEMVCode} from '../lib/json-emv-conv';
-import {EMVParser} from '../lib/EMVParser';
+import EMVParser from '../lib/EMVParser';
 import QrCode from 'qrcode';
 
 const Result = () => {
