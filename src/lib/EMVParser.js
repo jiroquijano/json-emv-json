@@ -22,7 +22,7 @@ const _ = require('lodash');
         output = {error: ''0002hi[99]04helo'} //because 99 is not a valid key
     ========================================================================================================
 */
-class EMVParser{
+export default class EMVParser{
     constructor(EMVString, keyshift=0, rootkey=''){
         this.emvString = EMVString;
         this.keyshift=keyshift;
@@ -114,5 +114,3 @@ class EMVParser{
         }
     }
 }
-
-module.exports = EMVParser;
