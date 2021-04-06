@@ -40,7 +40,7 @@ const convertObjectToArray = (input)=>{ //transform object to array to guarantee
                 resultingArray.push([key, innerArray])
             }else if(key === 'additional'){
                 const innerArray = [];
-                ['refLabel','termLabel'].forEach((innerKey)=>{
+                ['guidContext','refLabel','termLabel'].forEach((innerKey)=>{
                     if(input[key][innerKey]){
                         innerArray.push([innerKey, input[key][innerKey]]);
                     }

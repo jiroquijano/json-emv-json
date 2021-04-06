@@ -115,4 +115,4 @@ class EMVParser{
     }
 }
 
-export default EMVParser;
+module.exports = EMVParser;

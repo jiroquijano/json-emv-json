@@ -20,6 +20,7 @@ const FormInput = () =>{
     const [merName, setmername] = useState('');
     const [merCity, setmercity] = useState('');
     const [addVisibility, setAddVisibility] = useState(false);
+    const [guidContext, setGuidContext] = useState('');
     const [refLabel, setreflabel] = useState('');
     const [termLabel, settermlabel] = useState('');
 
@@ -47,14 +48,14 @@ const FormInput = () =>{
         const EMVObject = {};
         [['pfi',pfi], ['pim',pim],['guid',guid], ['acqid',acqid], ['merid',merid], ['pnflags',pnf], ['mcc',mcc],
         ['txCurrency',txCurrency], ['txAmt',txAmt], ['cc',cc], ['merName',merName], ['merCity',merCity],
-        ['refLabel',refLabel], ['termLabel',termLabel]
+        ['guidContext', guidContext], ['refLabel',refLabel], ['termLabel',termLabel]
         ].forEach((item)=>{ //ITEM[0] IS THE KEY!
             if(item[1]) {
                 if(['guid','acqid','merid','pnflags'].includes(item[0])){ //put under mait object of EMVObject
                     const childObject = {};
                     childObject[item[0]] = item[1];
                     EMVObject['mait'] = {...EMVObject['mait'], ...childObject}
-                }else if(['refLabel', 'termLabel'].includes(item[0])){ //put under additional object of EMVObject
+                }else if(['guidContext', 'refLabel', 'termLabel'].includes(item[0])){ //put under additional object of EMVObject
                     const childObject = {};
                     childObject[item[0]] = item[1];
                     EMVObject['additional'] = {...EMVObject['additional'], ...childObject}
@@ -237,6 +238,14 @@ const FormInput = () =>{
                                     {
                                     addVisibility && (
                                         <div className="form-input__expanded">
+                                            <label>
+                                                <div className="input-form__label">
+                                                    guid:
+                                                </div>
+                                                <input type='text' required maxLength={25}
+                                                value={guidContext} onChange={(e)=>setGuidContext(e.target.value)}
+                                                />
+                                            </label>
                                             <label>
                                                 <div className="input-form__label">
                                                     Reference Label:
